@@ -1,4 +1,4 @@
-function [gx,hx,exitflag]=gx_hx(fy,fx,fyp,fxp,stake);
+function [gx,hx,exitflag]=gx_hx(fy,fx,fyp,fxp,stake)
 %[gx,hx,exitflag]=gx_hx(fy,fx,fyp,fxp,stake);
 %computes the matrices gx and hx that define the first-order approximation to the solution  
 %of a dynamic stochastic general equilibrium model. 
@@ -25,6 +25,10 @@ function [gx,hx,exitflag]=gx_hx(fy,fx,fyp,fxp,stake);
 if nargin<5
     stake=1;
 end
+
+%MODIFICATION: very small change of the threshold for unit-eigenvalues
+stake = 1.00000001;
+
 exitflag = 1;
 
 %Create system matrices A,B
