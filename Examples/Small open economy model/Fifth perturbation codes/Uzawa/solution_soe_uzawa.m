@@ -2,12 +2,13 @@
 % Small open economy: Simulation calibrated with mexican data
 % Auxiliary model is Uzawa
 % This script computes Euler equation errors and kernel distributions
+% It allows for a pruning scheme that treats perturbation objects as parameters
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
 %---------------------------------------------------------------------------
 
 clear
-rng(0)
+rng(0); %fix seed for full replication
 % Add folder 'files' to the search path:
 addpath('files');
 % Load the model:
@@ -24,7 +25,7 @@ tz = 0.01958*((1-rho_z^2)^0.5); %conditional std. of interest rate shocks
 uy_ur_corr = -0.62; %conditional correlation between shocks
 
 rho_eps = 0.999999; %auto-corr epsilon (make it 1 after computing derivatives)
-psi1 = 0.00001; %auxiliary parameter (controls PAC)
+psi1 = 0.00001; %auxiliary parameter (controls Uzawa elasticity)
 psi2 = 0; %controls discount factor of the model of interest (to be calibrated)
 
 %Target for sss of NFA
@@ -57,7 +58,7 @@ M.M2 = Sigma;
 algo='gensylv'; % algorithm for the Sylvester equation
 eps_ind = 4; %index of epsilon in state vector
 approx0 = 2; %order of approximation for SSS
-approx1 = 3; %order of approximation for dynamics
+approx1 = 3; %order of approximation for dynamics (up to 5)
 
 %--------------------------------------------------------------------------
 % Calibration and perturbation solution
@@ -87,9 +88,21 @@ x0(eps_ind) = 1;
 T0 = 1000;
 T = 100000;
 %draw pseudo-random innovations
-innovations = mvnrnd([0 0],Sigma,(T0 + (T-1)))'; 
-%Use Levintal's function simul.m to simulate the economy:
+innovations = mvnrnd([0 0],Sigma,(T0 + (T-1)))';
+
+%DEFAULT: Use Levintal's function simul.m to simulate the economy, without pruning:
 [yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs,approx1,0,model);
+%
+%ALTERNATIVE 1: same, but with pruning. You get nonsense because perturbation
+%objects are treated as variables, so that the first-order component of the
+%auxiliary model is a near unit-root process.
+%[yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs,approx1,1,model);
+%
+%ALTERNATIVE 2: Use my own function simul_mod_pruning3.m to simulate the
+%economy, a heavily modified version of simul.m that implements pruning by
+%treating perturbation objects as parameters (only for third-order).
+%[yt,xt]=simul_mod_pruning3(x0,innovations,nyss,nxss,eta,derivs);
+
 yt = yt(:,T0+1:end);
 xt = xt(:,T0+1:end);
 ct = C0*yt;
@@ -131,14 +144,14 @@ title('(b) with \epsilon=0')
 %---------------------------------------------------------------------------
 %input parameters for the Euler errors function.
 %First input is the discount factor of the model of interest!
-P2 = [betta*(1+psi2_calib) gama R0 C0]; 
+P2 = [betta*(1+psi2_calib) gama R0 C0];
 %construct monomials to evaluate expectations
 [n_nodes1,epsi_nodes,weight_nodes] = Monomials_2(2,Sigma);
 lerrors =zeros(1,T);
 for t=1:T
-    
+
     lerrors(t) =  log10(euler_errors_soe(P1,P2,nxss,nyss,derivs,xt(:,t),epsi_nodes,weight_nodes,approx1));
-    
+
 end
 
 errors_stats = ([mean(lerrors) median(lerrors) max(lerrors)])

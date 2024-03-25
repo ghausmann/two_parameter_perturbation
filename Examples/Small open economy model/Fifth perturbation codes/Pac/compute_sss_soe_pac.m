@@ -1,6 +1,6 @@
 function y = compute_sss_soe_pac(P,model,params,M,nxss0,nyss,eps_ind,approx,guess)
-%This function approximates the SSS of bonds b_bar of the SOE model with
-%PAC as the auxiliary model.
+% This function approximates the SSS of bonds b_bar of the SOE model with
+% PAC as the auxiliary model.
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
 

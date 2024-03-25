@@ -1,7 +1,7 @@
 % Small open economy model with income and interest-rate shocks.
 % Auxiliary model is PAC
-%The structure of the script follows Levintal (2017).
-%You need to run this code only once.
+% The structure of the script follows Levintal (2017).
+% You need to run this code only once.
 %
 % The model is defined by:
 %

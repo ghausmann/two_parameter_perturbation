@@ -2,18 +2,16 @@ function y = calib_sss_soe_pac(psi2,b_bar,model,params,M,eta,nxss0,nyss,eps_ind,
 % Small open economy model
 % Auxiliary model is PAC
 %
-% This function implements the SSS calibration of section 2.4 in the paper.
+% This function implements the SSS in calibration mode.
 % We pin down pssi2 (controls the discount factor of the model of interest)
 % consistent with a fixed target for SSS bonds b_bar.
 %
-%Other inputs are data file 'model', the vector of parameters 'params', the
-%matrices of moments M, the 'eta' matrix, the DSS of exogenous states
-%'nxss0', the DSS of controls 'nyss', the index of epsilon in vector xt,
-%and the approximation order.
+% Other inputs are data file 'model', the vector of parameters 'params', the
+% matrices of moments M, the 'eta' matrix, the DSS of exogenous states
+% 'nxss0', the DSS of controls 'nyss', the index of epsilon in vector xt,
+% and the approximation order.
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
-
-algo='gensylv'; %algorithm to compute first-order derivatives
 
 %STEP 1: Given psi2 and b_bar, recalculate the new DSS and implied auxiliary
 %parameter values, modifying other function inputs when necessary.
@@ -31,6 +29,7 @@ nxss=[b_bar;nxss0];
 %STEP 2: Using the new DSS and other function inputs, call an external algorithm
 %to compute the matrices H1,..,Hk of derivatives.
 %The external algorithm is Levintal's function solve_dsge.m
+algo='gensylv'; %algorithm to compute first-order derivatives
 derivs1=solve_dsge(model,params,M,eta,nxss,nyss,approx,algo);
 
 %STEP 3: Using the matrices H1,..,Hk, evaluate the k-order Taylor series of

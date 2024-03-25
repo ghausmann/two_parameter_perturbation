@@ -1,16 +1,15 @@
 function y = eval_sss_soe_pac(b_bar,model,params,M,eta,nxss0,nyss,eps_ind,approx)
 % Small open economy model
 % Auxiliary model is PAC
-% This function implements the SSS algorithm of section 2.4 in the paper.
-%The key input is b_bar.
-%Other inputs are data file 'model', vector of parameters 'params',
-%matrices of moments M, the 'eta' matrix, the DSS of exogenous states
-%'nxss0', the DSS of controls 'nyss', the index of epsilon in vector xt,
-%and the approximation order.
+% This function implements the SSS algorithm.
+%
+% The key input is b_bar.
+% Other inputs are data file 'model', vector of parameters 'params',
+% matrices of moments M, the 'eta' matrix, the DSS of exogenous states
+% 'nxss0', the DSS of controls 'nyss', the index of epsilon in vector xt,
+% and the approximation order.
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
-
-algo='gensylv'; %algorithm to compute first-order derivatives
 
 %STEP 1: Given b_bar, recalculate the new DSS and implied auxiliary
 %parameter values, modifying other function inputs when necessary.
@@ -23,14 +22,15 @@ nxss=[b_bar;nxss0];
 %STEP 2: Using the new DSS and other function inputs, call an external algorithm
 %to compute the matrices H1,..,Hk of derivatives.
 %The external algorithm is Levintal's function solve_dsge.m
+algo='gensylv'; %algorithm to compute first-order derivatives
 derivs1=solve_dsge(model,params,M,eta,nxss,nyss,approx,algo);
 
 %STEP 3: Using the matrices H1,..,Hk, evaluate the k-order Taylor series of
-%h at the DSS, but imposing the model of interest epsilon=sigma=1.
+%h at the DSS, but imposing the model of interest (epsilon=sigma=1).
 x0=nxss;
 if eps_ind>0
     x0(eps_ind) = 1; % impose the model of interest
-    derivs1.hx(eps_ind,eps_ind) = 1;
+    derivs1.hx(eps_ind,eps_ind) = 1; % make sure epsilon follows a unit-root process.
 end
 %Compute the Taylor-series policy rule for bonds
 %uses the function dr_ht.m

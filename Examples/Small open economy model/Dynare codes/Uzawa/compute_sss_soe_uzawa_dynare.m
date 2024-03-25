@@ -1,7 +1,7 @@
 function y = compute_sss_soe_uzawa_dynare(M_,options_,oo_,eps_ind,guess)
-%This function approximates the SSS of bonds b_bar of the SOE model with
-%Uzawa as the auxiliary model.
-%Output is the SSS of bonds.
+% This function approximates the SSS of bonds b_bar of the SOE model with
+% Uzawa as the auxiliary model.
+% Output is the SSS of bonds.
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
 

@@ -1,12 +1,12 @@
 function y = euler_errors_soe(P1,P2,nxss,nyss,derivs,x_1,epsi_nodes,weight_nodes,approx)
-%This function computes Euler equation errors of the SOE
-%It assumes the model of interest.
-%Inputs are P1 (vector of conditional stds.), P2 (vector of parameters),
-%nxss (DSS of states in the auxiliary model), %nyss (DSS of controls in the
-%auxiliary model), derivs (matrices of derivatives of the policy
-%functions), x_1 (current states), epsi_nodes (nodes of monomials),
-%weight_nodes (probabilities of each node), and approx (order or
-%approximation).
+% This function computes Euler equation errors of the SOE.
+% It assumes the model of interest.
+% Inputs are P1 (vector of conditional stds.), P2 (vector of parameters),
+% nxss (DSS of states in the auxiliary model), %nyss (DSS of controls in the
+% auxiliary model), derivs (matrices of derivatives of the policy
+% functions), x_1 (current states), epsi_nodes (nodes of monomials),
+% weight_nodes (probabilities of each node), and approx (order or
+% approximation).
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
 

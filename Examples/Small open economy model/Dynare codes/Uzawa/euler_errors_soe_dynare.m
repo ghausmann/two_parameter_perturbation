@@ -1,11 +1,11 @@
 function y = euler_errors_soe_dynare(P2,yss,mdr,yt,epsi_nodes,weight_nodes,approx)
-%This function computes Euler equation errors of the SOE 
-%It assumes the model of interest. 
+% This function computes Euler equation errors of the SOE 
+% It assumes the model of interest. 
 %
-%Inputs are P2 (vector of parameters), yss (DSS), mdr (matrices of
-%derivatives of the policy functions), yt (current variables), epsi_nodes
-%(nodes of monomials), weight_nodes (probabilities of each node), and
-%approx (order or approximation).
+% Inputs are P2 (vector of parameters), yss (DSS), mdr (matrices of
+% derivatives of the policy functions), yt (current variables), epsi_nodes
+% (nodes of monomials), weight_nodes (probabilities of each node), and
+% approx (order or approximation).
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
 

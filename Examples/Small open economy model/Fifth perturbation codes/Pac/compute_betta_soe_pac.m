@@ -1,7 +1,7 @@
 function y = compute_betta_soe_pac(P,b1,model,params,M,nxss0,nyss,eps_ind,approx,guess)
-%This function calibrates the value of pssi2 (and indirectly the discount
-%factor at the model of interest) consistent with a target SSS of bonds b_bar,
-%with PAC as the auxiliary model.
+% This function calibrates the value of pssi2 (and indirectly the discount
+% factor at the model of interest) consistent with a target SSS of bonds b_bar,
+% with PAC as the auxiliary model.
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
 

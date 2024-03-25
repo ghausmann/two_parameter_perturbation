@@ -1,5 +1,4 @@
-% Simple script to do the pre-processing of the SOE model (calibration with
-% Mexican data).
+% Simple script to do the pre-processing of the growth model.
 % With Dynare, you need to execute this code once at the start of each
 % session.
 % Also, add the folder "common functions" to the MATLAB path.
@@ -8,6 +7,6 @@
 
 clear;
 addpath('C:\dynare\5.2\matlab');
-dynare soe_pac_full.mod
-save('my_soe_pac_full.mat');
+dynare prepare_model_growth.mod
+save('my_growth_model.mat');
 
