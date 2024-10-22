@@ -37,6 +37,7 @@ kx2u = mykron1(kx2,u);
 kxu2 = mykron1(x,ku2);
 ku3 = mykron1(ku2,u);
 
+
 yp = yss + 0.5*ghs2 + ghx*x + ghu*u + 0.5*ghxx*kx2 + 0.5*ghuu*ku2 + ghxu*kxu;
 
 if approx>2
