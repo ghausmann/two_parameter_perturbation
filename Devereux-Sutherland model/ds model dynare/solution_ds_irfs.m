@@ -28,8 +28,8 @@ eps_ind = 3; %index of perturbation variable
 
 %color of plots?
 my_color = 'b';
-%my_color = 'r';
-%my_color = 'g';
+%my_color = 'r--';
+%my_color = 'g:';
 %my_color = 'k';
 
 %--------------------------------------------------------------------------
@@ -74,6 +74,11 @@ innovations = zeros(4,(T0 + (T-1))); % shocks from period 2 to T
 
 %use Dynare's function simult_ to simulate the economy
 myt =simult_(M_,options_,y1,mdr,innovations',3);
+%uncomment this one for a second-order solution
+%myt =simult_(M_,options_,y1,mdr,innovations',2);
+%uncomment this one for a linear-corrected solution
+%[myt,~]=simul_linear_risk_dyn(y1(5:12),innovations,mdr,yss,eps_ind,5,12,0.00001);
+
 xt = myt(5:12,:); %states
 yt = [myt(1:4,:);myt(13:end,:)]; %controls
 
