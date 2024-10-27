@@ -22,7 +22,7 @@ parameters a, betta, gama, pssi, phi, alpa, md, d0, rho_d, td, rho_y, ty, rho_q,
 a = 0.5; % U.S. equity home bias (this is a target value)
 betta = 0.96; %standard value
 gama = 2; %standard value
-pssi = 0.001; % improves accuracy
+pssi = 0.0001; % improves accuracy
 phi = 2; %Imbs and Mejean (2015)
 alpa = 0.85; % U.S. import share
 md = 0.036; % DSS dividend share (FRED data)
@@ -90,17 +90,17 @@ alpa*((P0^phi)*C0)*exp(pi*phi + c) + (1-alpa)*((Ps0^phi)*Cs0)*exp(pi_s*phi + c_s
 
 %Euler equation Home equity, HOME
 betta*(exp(-kappa*c))*( zSh0*exp(zSh(+1)) + exp(ey(+1))*( exp(d0+d(+1))/(1+exp(d0+d(+1))) ) )*exp( -pi(+1)-gama*c(+1) ) 
-= zSh0*exp(zSh - pi - gama*c)*(1 + (1-eps)*pssi*(Sh-a));
+= zSh0*exp(zSh - pi - gama*c)*(1 + (1-eps^2)*pssi*(Sh-a));
 %Euler equation foreign equity, HOME
 betta*(exp(-kappa*c))*( zSf0*exp(zSf(+1)) + pf0*exp(pf(+1)+ey_s(+1))*(exp(d0+d_s(+1))/(1+exp(d0+d_s(+1))) ) )*exp( -pi(+1)-gama*c(+1) )
-= zSf0*exp(zSf - pi - gama*c)*(1 + (1-eps)*pssi*(Sf-(1-a)));
+= zSf0*exp(zSf - pi - gama*c)*(1 + (1-eps^2)*pssi*(Sf-(1-a)));
 
 %Euler equation Home equity, FOREIGN
 betta*(exp(-kappa*c_s))*( zSh0*exp(zSh(+1)) + exp(ey(+1))*(exp(d0+d(+1))/(1+exp(d0+d(+1))) ) )*exp( -pi_s(+1)-gama*c_s(+1) ) 
-= zSh0*exp(zSh - pi_s - gama*c_s)*(1 + (1-eps)*pssi*((1-Sh)-(1-a)));
+= zSh0*exp(zSh - pi_s - gama*c_s)*(1 + (1-eps^2)*pssi*((1-Sh)-(1-a)));
 %Euler equation foreign equity, FOREIGN
 betta*(exp(-kappa*c_s))*( zSf0*exp(zSf(+1)) + pf0*exp(pf(+1)+ey_s(+1))*(exp(d0+d_s(+1))/(1+exp(d0+d_s(+1))) ) )*exp( -pi_s(+1)-gama*c_s(+1) )
-= zSf0*exp(zSf - pi_s - gama*c_s)*(1 + (1-eps)*pssi*((1-Sf)-a));
+= zSf0*exp(zSf - pi_s - gama*c_s)*(1 + (1-eps^2)*pssi*((1-Sf)-a));
 
 end;
 

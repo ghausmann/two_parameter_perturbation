@@ -1,6 +1,6 @@
 %--------------------------------------------------------------------------
 % Two-country DSGE model with bonds and equities: Stochastic simulations.
-% This script replicates the fourth column of Table 2 in the paper.
+% This script replicates the fourth column of Table 3 in the paper.
 % Countries are asymmetric in their degree of risk aversion.
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
@@ -19,7 +19,7 @@ eps_ind = 5; %index of perturbation variable
 gap = -0.25;
 M_.params(31) = gap;
 
-tq = 0.0067 -3.4135e-05; %calibrated std. of preference shocks
+tq = 0.0067; %calibrated std. of preference shocks
 M_.params(17) = tq;
 
 a = M_.params(1);
@@ -230,7 +230,7 @@ std_c = std(log(ct));
 std_y = std(log(eyt));
 
 %Compute Euler errors
-[n_nodes,epsi_nodes,weight_nodes] = Monomials_1(6,M_.Sigma_e); %monomials to approximate expectations
+[n_nodes,epsi_nodes,weight_nodes] = Monomials_2(6,M_.Sigma_e); %monomials to approximate expectations
 %Other inputs for the Euler errors function.
 %NOTE!
 P = [betta (gama+gap) kappa d0 pf0 zSh0 zSf0 zBh0 zBf0 P0 Ps0];

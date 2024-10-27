@@ -1,6 +1,6 @@
 %--------------------------------------------------------------------------
 % Two-country DSGE model with bonds and equities: impulse responses.
-% This script replicates figures 3-5 in the paper.
+% This script replicates figures 13-15 in Appendix E.
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
@@ -8,9 +8,9 @@
 clear;
 
 %Set one of these variables to 1:
-irf_income_shock = 0; %for income shock
+irf_income_shock = 1; %for income shock
 irf_div_shock = 0; %for dividend shock
-irf_pref_shock = 1; %for preference shock
+irf_pref_shock = 0; %for preference shock
 
 %Add Dynare's matlab folder to the search path
 addpath('C:\dynare\5.2\matlab');
@@ -20,14 +20,13 @@ eps_ind = 5;
 
 a = M_.params(1);
 
-
 %--------------------------------------------------------------------------
 %Model solution
 %--------------------------------------------------------------------------
 
 % First, calibrate the std. of preference shocks to match the observed
 % Equity home bias, and solve for SSS external bond position.
-mysol_calib = compute_calib_dsge4_dyn(a,M_,options_,oo_,eps_ind,[0.01 0])
+mysol_calib = compute_calib_dsge4_dyn(a,M_,options_,oo_,eps_ind,[0.01 1])
 
 tq = mysol_calib(1)
 a1 = a;

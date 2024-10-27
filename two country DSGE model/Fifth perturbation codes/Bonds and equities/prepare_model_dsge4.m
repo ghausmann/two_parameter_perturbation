@@ -25,7 +25,7 @@ clear;
 %Parameters.
 % The code approximates log-deviations of all variables (except for bonds and equities, because they can take zero values)
 % Hence their deterministic steady-state values in levels enter as parameters in the model equations
-syms a af b bf betta gama pssi phi alpa md d0 rho_d td rho_y ty rho_q tq rho_eps kappa C0 Cs0 P0 Ps0 pf0 zSh0 zSf0 zBh0 zBf0 gap;
+syms a af b bf betta gama pssi phi alpa md d0 rho_d td rho_y ty rho_q tq rho_eps kappa C0 Cs0 P0 Ps0 pf0 zSh0 zSf0 zBh0 zBf0 gap pssi2;
 
 %States today
 syms Bh Bf Sh Sf d d_s ey ey_s q q_s eps real
@@ -46,7 +46,7 @@ y=[c, c_s, zBh, zBf, zSh, zSf, pi, pi_s, piu, piu_s, pf]; % today
 yp=[cp, c_sp, zBhp, zBfp, zShp, zSfp, pip, pi_sp, piup, piu_sp, pfp]; % tomorrow
 
 % Collect Parameters
-symparams=[a, af, b, bf, betta, gama, pssi, phi, alpa, md, d0, rho_y, ty, rho_d, td, rho_q, tq, rho_eps, kappa, C0, Cs0, P0, Ps0, pf0, zSh0, zSf0, zBh0, zBf0, gap];
+symparams=[a, af, b, bf, betta, gama, pssi, phi, alpa, md, d0, rho_y, ty, rho_d, td, rho_q, tq, rho_eps, kappa, C0, Cs0, P0, Ps0, pf0, zSh0, zSf0, zBh0, zBf0, gap, pssi2];
 
 % Define the function Phi, which is the lower block of h(x).
 % This block is the expected value of the exogenous state variables.
@@ -94,31 +94,31 @@ f7 = alpa*((P0^phi)*C0)*exp(pi*phi + c) ...
 
 %Euler equation Home equity, HOME
 f8 = betta*(exp(-kappa*c))*( zSh0*exp(zShp) + exp(eyp)*( exp(d0+dp)/(1+exp(d0+dp)) ) )*exp( -pip-(gama+gap)*cp ) ...
-- zSh0*exp(zSh - pi - (gama+gap)*c)*(1 + (1-eps)*pssi*(Shp-a));
+- zSh0*exp(zSh - pi - (gama+gap)*c)*(1 + (1-eps^2)*pssi*(Shp-a));
 %Euler equation foreign equity, HOME
 f9 = betta*(exp(-kappa*c))*( zSf0*exp(zSfp) + pf0*exp(pfp+ey_sp)*(exp(d0+d_sp)/(1+exp(d0+d_sp)) ) )*exp( -pip-(gama+gap)*cp ) ...
-- zSf0*exp(zSf - pi - (gama+gap)*c)*(1 + (1-eps)*pssi*(Sfp-af));
+- zSf0*exp(zSf - pi - (gama+gap)*c)*(1 + (1-eps^2)*pssi*(Sfp-af));
 
 %Euler equation Home equity, FOREIGN
 f10 = betta*(exp(-kappa*c_s))*( zSh0*exp(zShp) + exp(eyp)*(exp(d0+dp)/(1+exp(d0+dp)) ) )*exp( -pi_sp-(gama-gap)*c_sp ) ...
-- zSh0*exp(zSh - pi_s - (gama-gap)*c_s)*(1 - (1-eps)*pssi*(Shp-a));
+- zSh0*exp(zSh - pi_s - (gama-gap)*c_s)*(1 - (1-eps^2)*pssi*(Shp-a));
 %Euler equation foreign equity, FOREIGN
 f11 = betta*(exp(-kappa*c_s))*( zSf0*exp(zSfp) + pf0*exp(pfp+ey_sp)*(exp(d0+d_sp)/(1+exp(d0+d_sp)) ) )*exp( -pi_sp-(gama-gap)*c_sp ) ...
-- zSf0*exp(zSf - pi_s - (gama-gap)*c_s)*(1 - (1-eps)*pssi*(Sfp-af));
+- zSf0*exp(zSf - pi_s - (gama-gap)*c_s)*(1 - (1-eps^2)*pssi*(Sfp-af));
 
 %Euler equation Home bond, HOME
 f12 = betta*(exp(-kappa*c))*P0*exp(piup  -pip -(gama+gap)*cp) ...
-    - zBh0*exp(zBh-pi-(gama+gap)*c)*(1 + (1-eps)*pssi*(Bhp-b));
+    - zBh0*exp(zBh-pi-(gama+gap)*c)*(1 + (1-eps^2)*pssi2*(Bhp-b));
 %Euler equation foreign bond, HOME
 f13 = betta*(exp(-kappa*c))*Ps0*exp(piu_sp-pip -(gama+gap)*cp) ...
-    - zBf0*exp(zBf-pi-(gama+gap)*c)*(1 + (1-eps)*pssi*(Bfp-bf));
+    - zBf0*exp(zBf-pi-(gama+gap)*c)*(1 + (1-eps^2)*pssi2*(Bfp-bf));
 
 %Euler equation Home bond, FOREIGN
 f14 = betta*(exp(-kappa*c_s))*P0*exp(piup-  pi_sp-(gama-gap)*c_sp) ...
-    - zBh0*exp(zBh-pi_s-(gama-gap)*c_s)*(1 - (1-eps)*pssi*(Bhp-b));
+    - zBh0*exp(zBh-pi_s-(gama-gap)*c_s)*(1 - (1-eps^2)*pssi2*(Bhp-b));
 %Euler equation foreign bond, FOREIGN
 f15 = betta*(exp(-kappa*c_s))*Ps0*exp(piu_sp-pi_sp-(gama-gap)*c_sp) ...
-    - zBf0*exp(zBf-pi_s-(gama-gap)*c_s)*(1 - (1-eps)*pssi*(Bfp-bf));
+    - zBf0*exp(zBf-pi_s-(gama-gap)*c_s)*(1 - (1-eps^2)*pssi2*(Bfp-bf));
 
 
 

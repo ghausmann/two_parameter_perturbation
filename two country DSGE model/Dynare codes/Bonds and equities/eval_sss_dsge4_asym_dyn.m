@@ -78,4 +78,5 @@ eq2 = x1(4)-bs1;
 eq3 = x1(5)-a1;
 eq4 = x1(6)-as1;
 
+%keyboard;
 y = [eq1;eq2;eq3;eq4];

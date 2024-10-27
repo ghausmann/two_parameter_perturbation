@@ -23,7 +23,7 @@ eps_ind = 5; %index of perturbation variable
 % M_.params(9) = alpa;
 
 %Set this variable to 1 for RER not adjusted for preference shocks
-not_adjusted = 1;
+not_adjusted = 0;
 
 %--------------------------------------------------------------------------
 % Calibration and perturbation solution
@@ -31,7 +31,7 @@ not_adjusted = 1;
 
 % First, calibrate the std. of preference shocks to match the observed
 % Equity home bias, and solve for SSS external bond position.
-mysol_calib = compute_calib_dsge4_dyn(a,M_,options_,oo_,eps_ind,[0.01 0])
+mysol_calib = compute_calib_dsge4_dyn(a,M_,options_,oo_,eps_ind,[0.01 1])
 
 tq = mysol_calib(1)
 a1 = a;
@@ -215,7 +215,7 @@ std_c = std(log(ct));
 std_y = std(log(eyt));
 
 %Compute Euler errors
-[n_nodes,epsi_nodes,weight_nodes] = Monomials_1(6,M_.Sigma_e); %monomials to approximate expectations
+[n_nodes,epsi_nodes,weight_nodes] = Monomials_2(6,M_.Sigma_e); %monomials to approximate expectations
 %Other inputs for the Euler errors function.
 P = [betta (gama+gap) kappa d0 pf0 zSh0 zSf0 zBh0 zBf0 P0 Ps0];
 

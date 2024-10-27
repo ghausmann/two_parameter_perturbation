@@ -1,7 +1,6 @@
 %--------------------------------------------------------------------------
 % Two-country DSGE model with bonds and equities: Stochastic simulations.
-% This script replicates the first three columns of Table 2 in the paper
-% (except the mean of Euler errors).
+% This script replicates the first three columns of Table 3 in the paper
 %
 % Copyright (C) 2024 Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
@@ -20,17 +19,18 @@ b = 0; %Just a initial value
 bf = -b;
 betta = 0.96; % standard value
 gama = 2; % standard value
-pssi = 0.001; % improves accuracy
+pssi = 0.0001; % improves accuracy
+pssi2 = 0.1;
 phi = 2; % Imbs and Mejean (2015)
 alpa = 0.85; % U.S. import share
 md = 0.036; %FRED data
 d0 = log(md/(1-md));
 rho_d = 0.42; %FRED data
-sd = 0.059; %FRED data
+td = 0.059; %FRED data
 rho_y = 0.51; %FRED data
-sy = 0.018; %FRED data
+ty = 0.018; %FRED data
 rho_q = 0.46; % within range of rho_d and rho_y
-sq = 0.0001; % comparative statics
+tq = 0.0067; % comparative statics
 rho_eps = 1; % makes perturbation variable constant over time
 kappa = 0.007; % match serial correlation of U.S. trade balance
 %Deterministic steady-state values
@@ -47,7 +47,7 @@ gap = 0; %symmetric case (gap>0 introduces assymetric risk aversion)
 uy_uys_corr = 0.68; % Corsetti, Dedeloa and Leduc (2008)
 uy_ud_corr = 0.12; %FRED data
 
-params=[a af b bf betta gama pssi phi alpa md d0 rho_y sy rho_d sd rho_q sq rho_eps kappa C0 Cs0 P0 Ps0 pf0 zSh0 zSf0 zBh0 zBf0 gap];
+params=[a af b bf betta gama pssi phi alpa md d0 rho_y ty rho_d td rho_q tq rho_eps kappa C0 Cs0 P0 Ps0 pf0 zSh0 zSf0 zBh0 zBf0 gap pssi2];
 
 %Moments
 % Compute the cross moments:
@@ -70,7 +70,7 @@ approx = 3;
 % params(9) = alpa;
 
 %Set this variable to 1 for RER not adjusted for preference shocks
-%not_adjusted = 1;
+not_adjusted = 0;
 
 %--------------------------------------------------------------------------
 % Calibration and perturbation solution
@@ -78,13 +78,13 @@ approx = 3;
 
 % First, calibrate the std. of preference shocks to match the observed
 % Equity home bias, and solve for SSS external bond position.
-mysol_calib = compute_calib_dsge4(a,model,params,M,eps_ind,[0.01 0]);
+mysol_calib = compute_calib_dsge4(a,model,params,M,eps_ind,[0.01 1]);
              
 tq = mysol_calib(1);
 a1 = a;
 b1 = mysol_calib(2);
 params(17) = tq;
-eta=[zeros(4,6);sy 0 0 0 0 0;0 sy 0 0 0 0;0 0 sd 0 0 0;0 0 0 sd 0 0;0 0 0 0 tq 0;0 0 0 0 0 tq;0 0 0 0 0 0];
+eta=[zeros(4,6);ty 0 0 0 0 0;0 ty 0 0 0 0;0 0 td 0 0 0;0 0 0 td 0 0;0 0 0 0 tq 0;0 0 0 0 0 tq;0 0 0 0 0 0];
 % % SSS check
 % mysol = compute_sss_dsge4(model,params,M,eps_ind,[a b1]);
 
@@ -255,6 +255,21 @@ dnfa = nfat -nfa_;
 std_c = std(log(ct));
 std_y = std(log(eyt));
 
+P = [betta (gama+gap) kappa d0 pf0 zSh0 zSf0 zBh0 zBf0 P0 Ps0];
+[n_nodes,epsi_nodes,weight_nodes] = Monomials_2(6,Sigma);
+ln = length(weight_nodes);
+my_errors =zeros(1,T);
+
+tic
+for t=1:T
+    
+    my_errors(t) = log10(euler_errors_dsge4(P,nxss,nyss,xt(:,t),epsi_nodes,weight_nodes,derivs1,eta,approx));
+    
+end
+toc
+errors_stats = ([mean(my_errors) median(my_errors) max(my_errors)])
+
+
 %results
 disp('-----------------------------------------------');
 disp('Simulated Moments of the two-country DSGE model')
@@ -264,7 +279,7 @@ m_eq_home_bias = mean(eq_home_bias)
 m_ext_eq_assets = mean(ext_eq_assets)
 m_ext_assets = mean(ext_assets)
 m_ext_liabilities = mean(ext_liabilities)
-% m_euler_errors = mean(my_errors)
+m_euler_errors = mean(my_errors)
 % max_euler_errors = max(my_errors)
 disp('Standard deviations:')
 std_c_std_y = std_c/std_y
@@ -294,3 +309,5 @@ my_est = fitlm([Rb_dif' Rs_dif'],der');
 my_coefs = table2array(my_est.Coefficients(2:3,1))
 ratio_bonds = my_coefs(1)
 ratio_equities = my_coefs(2)
+
+
