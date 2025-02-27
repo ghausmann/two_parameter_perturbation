@@ -2,8 +2,6 @@ function y = compute_sss_ds_5p(model,params,M,eps_ind,guess)
 % Devereux-Sutherland (2011) model
 % Standard version with asset holdings
 % This function approximates the SSS of the Home asset
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %Evaluate the matrix eta:
 tk = params(6);

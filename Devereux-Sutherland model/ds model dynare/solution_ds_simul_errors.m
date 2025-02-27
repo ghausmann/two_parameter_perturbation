@@ -2,8 +2,9 @@
 % Devereux-Sutherland (2011) model: stochastic simulation.
 % Standard version with asset holdings
 % This script computes Euler errors (up to third-order)
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% replicating the results from Table 1 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -12,8 +13,9 @@ disp('-----------------------------------------------');
 
 clear;
 
+rng(0); %Fix seed for pseudorandom number generator.
 %Add Dynare to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load Dynare's model data
 load('my_ds_model.mat');
 
@@ -49,17 +51,15 @@ tic;[mdr, ~, ~, ~] = resol(0, M_, options_, oo_);toc
 yss = mdr.ys;
 y0 = yss; % start at the steady state
 y0(eps_ind+4)=1; % evaluate at the model of interest (epsilon=1)
-x0 = y0(5:12);
-%SSS of all variables
-y1 = dr_yt(mdr,yss,3,x0-yss(5:12,1),zeros(4,1));
 
 T0 = 1000;
 T = 10000;
 n_e=4; % number of shocks.
 %draw pseudo-random innovations
-innovations = mvnrnd(zeros(n_e,1),M_.Sigma_e,(T0 + (T-1)))'; % shocks from period 2 to T
+innovations = my_mvnrnd(zeros(n_e,1),M_.Sigma_e,(T0 + (T-1)))'; % shocks from period 2 to T
 %use Dynare's function simult_ to simulate the economy
-myt =simult_(M_,options_,y1,mdr,innovations',3);
+myt =simult_(M_,options_,y0,mdr,innovations',3);
+myt = myt(:,T0+1:end);
 xt = myt(5:12,:); %states
 yt = [myt(1:4,:);myt(13:end,:)]; %controls
 

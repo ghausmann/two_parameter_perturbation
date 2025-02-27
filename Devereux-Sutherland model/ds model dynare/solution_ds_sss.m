@@ -1,9 +1,9 @@
 %--------------------------------------------------------------------------
 % Devereux-Sutherland (2011) model: comparative statics.
 % Standard version with asset holdings
-% This script replicates Figure 1 in the paper.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script replicates Figure 1 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -13,7 +13,7 @@ disp('-----------------------------------------------');
 clear;
 
 %Add Dynare to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load Dynare's model data
 load('my_ds_model.mat');
 
@@ -72,9 +72,9 @@ myt1 =simult_(M_1,options_,y0,mdr1,innovations',2);
 aht1 = myt1(5,:); %Home asset
 aft1 = myt1(6,:); %Foreign asset
 
-% %--------------------------------------------------------------------------
-% % Perturbation solution at a=0
-% %--------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+% Perturbation solution at a=0
+%--------------------------------------------------------------------------
 a2 = 0; 
 %Recalculate DSS of auxiliary model
 ah2 = a2;
@@ -85,7 +85,6 @@ yss = [zh0;zh0;1;1;ah2;af2;0;0;0;0;0;0;1;1];
 oo_.steady_state = yss;
 
 [mdr2, ~, ~, ~] = resol(0, M_2, options_, oo_);
-
 yss = mdr2.ys;
 y0 = yss; % start at the steady state
 y0(eps_ind+4)=1; % evaluate at the model of interest (epsilon=1)
@@ -94,10 +93,10 @@ y0(eps_ind+4)=1; % evaluate at the model of interest (epsilon=1)
 myt2 =simult_(M_2,options_,y0,mdr2,innovations',2);
 aht2 = myt2(5,:); %Home asset
 aft2 = myt2(6,:); %Foreign asset
-% 
-% %--------------------------------------------------------------------------
-% % Perturbation solution at a=1.5
-% %--------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------
+% Perturbation solution at a=1.5
+%--------------------------------------------------------------------------
 a3 = 1.5; 
 %Recalculate DSS of auxiliary model
 ah3 = a3;
@@ -106,9 +105,10 @@ M_3 = M_;
 M_3.params(1) = a3;
 yss = [zh0;zh0;1;1;ah3;af3;0;0;0;0;0;0;1;1];
 oo_.steady_state = yss;
+exo_steady_state = oo_.exo_steady_state;
+my_dr = oo_.dr;
 
 [mdr3, ~, ~, ~] = resol(0, M_3, options_, oo_);
-
 yss = mdr3.ys;
 y0 = yss; % start at the steady state
 y0(eps_ind+4)=1; % evaluate at the model of interest (epsilon=1)
@@ -144,7 +144,7 @@ hold on;
 plot(time,aht2(T0:T0+Tr),'r--');
 plot(time,aht3(T0:T0+Tr),'g-.');
 title('(c) Home asset over time');
-xlabel('Time');
+xlabel('Time t');
 legend('$\bar{a}=0.747$','$\bar{a}=0$','$\bar{a}=1.5$','Interpreter','latex')
 
 subplot(2,2,4);
@@ -153,5 +153,5 @@ hold on;
 plot(time,aft2(T0:T0+Tr),'r--');
 plot(time,aft3(T0:T0+Tr),'g-.');
 title('(d) Foreign asset over time');
-xlabel('Time');
+xlabel('Time t');
 legend('$\bar{a}=0.747$','$\bar{a}=0$','$\bar{a}=1.5$','Interpreter','latex')

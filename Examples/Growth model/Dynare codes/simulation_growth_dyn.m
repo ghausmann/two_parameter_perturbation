@@ -1,5 +1,6 @@
 % -------------------------------------------------------------------------
 % Neoclassical growth model: Simulations
+% This script replicates the results in Table 1 of Appendix D.2
 % -------------------------------------------------------------------------
 
 %NOTE: make sure to add the master folder "Growth model" to the search
@@ -9,7 +10,7 @@ clear
 % Seed the pseudo-random number generator, uncomment for replication.
 rng(0)
 %Add Dynare's matlab folder to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load the pre-processing data
 load('my_growth_model.mat');
 

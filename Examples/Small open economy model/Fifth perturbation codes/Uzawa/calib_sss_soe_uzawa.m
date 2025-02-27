@@ -9,8 +9,7 @@ function y = calib_sss_soe_uzawa(psi2,b_bar,model,params,M,eta,nxss0,nyss,eps_in
 % matrices of moments M, the 'eta' matrix, the DSS of exogenous states
 % 'nxss0', the DSS of controls 'nyss', the index of epsilon in vector xt,
 % and the approximation order.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+
 
 %STEP 1: Given psi2 and b_bar, recalculate the new DSS and implied auxiliary
 %parameter values, modifying other function inputs when necessary.

@@ -1,7 +1,5 @@
 function y = compute_sss_growth_dyn(M_,options_,oo_,eps_ind,guess)
 %This function approximates the SSS of capital k_bar in the neoclassical growth model.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %Call fsolve to find a candidate b_bar that zeroes the residual SSS
 %function:

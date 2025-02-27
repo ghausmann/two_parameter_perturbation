@@ -3,7 +3,6 @@
 % Standard version with asset holdings
 % Auxiliary model uses PAC
 %
-% Copyright (C) 2024 Guillermo Hausmann Guil
 */
 
 % Make sure that the declaration order coincides with the dr order, to avoid a mess!

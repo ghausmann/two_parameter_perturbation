@@ -3,15 +3,13 @@
 % Auxiliary model is PAC
 % This script computes Euler equation errors and kernel distributions
 % Remember to run first the script pre_processing_soe_pac_full.m
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 clear
 rng(0)
 
 %Add Dynare's matlab folder to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load the pre-processing data
 load('my_soe_pac_full.mat');
 
@@ -47,10 +45,10 @@ T0 = 1000;
 T = 100000;
 Sigma = M_.Sigma_e;
 %draw pseudo-random innovations
-innovations = mvnrnd([0 0],Sigma,(T0 + (T-1)))';
+innovations = my_mvnrnd([0 0],Sigma,(T0 + (T-1)))';
 
 %DEFAULT: use Dynare matlab function simult_.m to simulate the economy, without pruning:
-%myt =simult_(M_,options_,x0,mdr,innovations',3);
+myt =simult_(M_,options_,x0,mdr,innovations',3);
 %
 %ALTERNATIVE 1: same, but with pruning. You get nonsense because perturbation
 %objects are treated as variables, so that the first-order component of the
@@ -61,8 +59,8 @@ innovations = mvnrnd([0 0],Sigma,(T0 + (T-1)))';
 %ALTERNATIVE 2: Use simult_mod.m to simulate the
 %economy, a slightly modified version of simult_ that implements pruning by
 %treating the perturbation object sigma as a parameter.
-options_.pruning = 1;
-myt =simult_mod(M_,options_,x0,mdr,innovations',3);
+% options_.pruning = 1;
+% myt =simult_mod(M_,options_,x0,mdr,innovations',3);
 
 myt = myt(:,T0+1:end);
 xt = myt(1:4,:); %state variables

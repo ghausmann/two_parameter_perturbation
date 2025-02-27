@@ -5,8 +5,6 @@ function y = eval_sss_growth_dyn(k_bar,M_, options_, oo_,eps_ind)
 %Dynare (M_,options_, and oo_), and the index of the epsilon variable in
 %the vector yt of endogenous variables.
 %The order of approximation is fixed at k=3.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %STEP 1: Given k_bar, recalculate the new DSS and implied auxiliary
 %parameter values, modifying other function inputs when necessary.

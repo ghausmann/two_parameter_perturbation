@@ -3,15 +3,13 @@
 % Auxiliary model is Uzawa
 % This script computes Euler equation errors and kernel distributions
 % Remember to run first the script pre_processing_soe_uzawa_full.m
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 clear
 rng(0); %fix seed for full replication
 
 %Add Dynare's matlab folder to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load the pre-processing data
 load('my_soe_uzawa_full.mat');
 
@@ -47,7 +45,7 @@ T0 = 1000;
 T = 100000;
 Sigma = M_.Sigma_e;
 %draw pseudo-random innovations
-innovations = mvnrnd([0 0],Sigma,(T0 + (T-1)))';
+innovations = my_mvnrnd([0 0],Sigma,(T0 + (T-1)))';
 
 %DEFAULT: use Dynare matlab function simult_.m to simulate the economy, without pruning:
 myt =simult_(M_,options_,x0,mdr,innovations',3);

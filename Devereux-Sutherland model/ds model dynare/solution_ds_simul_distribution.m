@@ -1,9 +1,9 @@
 %--------------------------------------------------------------------------
 % Devereux-Sutherland (2011) model: stochastic simulation.
 % Standard version with asset holdings
-% This script replicates figure 4 in the paper
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script replicates figure 4 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -14,14 +14,16 @@ clear;
 
 rng(0); %Fix seed for pseudorandom number generator.
 %Add Dynare to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load Dynare's model data
 load('my_ds_model.mat');
 
 rho_y = 0.51;
 M_.params(10) = rho_y;
 kappa = 0.007; %Uzawa parameter
-%kappa = 0; %Uzawa parameter
+%------------------------------------------------------------------------
+%kappa = 0; %Uncomment this instead to make the discount factor exogenous
+%------------------------------------------------------------------------
 M_.params(9) = kappa;
 zh0 = betta*d0;
 eps_ind = 3; %index of perturbation variable
@@ -52,19 +54,18 @@ toc
 yss = mdr.ys;
 y0 = yss; % start at the steady state
 y0(eps_ind+4)=1; % evaluate at the model of interest (epsilon=1)
-x0 = y0(5:12);
-%SSS of all variables
-y1 = dr_yt(mdr,yss,3,x0-yss(5:12,1),zeros(4,1));
 
 T0 = 1000;
 T = 1000000;
 n_e=4; % number of shocks.
 %draw pseudo-random innovations
-innovations = mvnrnd(zeros(n_e,1),M_.Sigma_e,(T0 + (T-1)))'; % shocks from period 2 to T
+innovations = my_mvnrnd(zeros(n_e,1),M_.Sigma_e,(T0 + (T-1)))'; % shocks from period 2 to T
 %use Dynare's function simult_ to simulate the economy
-myt1 = simult_(M_,options_,y1,mdr,innovations',3);
+myt1 = simult_(M_,options_,y0,mdr,innovations',3);
+myt1 = myt1(:,T0+1:end);
 %use my modification of simult_ to simulate with pruning
-myt2 = simult_mod(M_,options_,y1,mdr,innovations',3);
+myt2 = simult_mod(M_,options_,y0,mdr,innovations',3);
+myt2 = myt2(:,T0+1:end);
 
 zht1 = myt1(1,1:end-1);
 zft1 = myt1(2,1:end-1);

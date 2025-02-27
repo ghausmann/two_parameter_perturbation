@@ -1,14 +1,15 @@
 function y = eval_sss_ds(a1,M_, options_, oo_,eps_ind)
 % Devereux-Sutherland (2011) model
 % Standard version with asset holdings
-% This function implements the SSS algorithm, using a second-order
-% approximation (enough for the SSS of this model).
+% This function implements the SSS algorithm discussed in Section 5.3 of
+% the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %
+% It uses a second-order approximation (enough for the SSS of this model).
 % The key input is a1 (SSS value of Home equity).
 % Other inputs are Dynare's structs, and eps_ind (the
 % index of the epsilon variable)
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %STEP 1: Given x, recalculate the new DSS and implied auxiliary parameter
 %values, modifying other function inputs when necessary.

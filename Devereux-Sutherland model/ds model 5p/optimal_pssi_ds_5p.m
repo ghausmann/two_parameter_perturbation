@@ -3,7 +3,9 @@
 % pssi (free parameter that controls PAC-like modifications)
 % Standard version with asset holdings
 %
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This routine is discussed in Section 4.2 of the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -58,10 +60,11 @@ approx = 3;
 [~,epsi_nodes,weight_nodes] = Monomials_2(4,Sigma);
 P = [betta gama kappa d0 z0];
 
-
+%Objective function
 myfun=@(x)errors_routine_5p(x,model,params,eta,M,eps_ind,approx,epsi_nodes,weight_nodes,P);
 options = optimoptions('lsqnonlin','Display','iter');
 t =clock; 
+%Use the built-in function lsqnonlin to minimize
 my_est0 = lsqnonlin(myfun,log(1e-5),[],[],options);
 pssi_star = exp(my_est0)
 my_time1 = etime(clock,t)

@@ -8,8 +8,7 @@ function y = eval2_sss_ds_5p(a1,model,params,M,eta,eps_ind)
 % Other inputs are data file 'model', vector of parameters 'params',
 % matrices of moments M, the 'eta' matrix, and eps_ind (the index of the
 % epsilon variable).
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+
 
 %algorithm to compute first-order solution
 algo='vectorize';

@@ -2,8 +2,6 @@ function y = compute_sss_soe_pac_dynare(M_,options_,oo_,eps_ind,guess)
 %This function approximates the SSS of bonds b_bar of the SOE model with
 %PAC as the auxiliary model.
 %Output is the SSS of bonds.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 options_.order=2; %Choose a second-order solution
 options_.k_order_solver=0;

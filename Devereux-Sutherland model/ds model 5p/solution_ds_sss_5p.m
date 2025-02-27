@@ -1,9 +1,9 @@
 %--------------------------------------------------------------------------
 % Devereux-Sutherland (2011) model: comparative statics.
 % Standard version with asset holdings
-% This script replicates Figure 1 in the paper.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script replicates Figure 1 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -184,7 +184,7 @@ hold on;
 plot(time,aht2(T0:T0+Tr),'r--');
 plot(time,aht3(T0:T0+Tr),'g-.');
 title('(c) Home asset over time');
-xlabel('Time');
+xlabel('Time t');
 legend('$\bar{a}=0.747$','$\bar{a}=0$','$\bar{a}=1.5$','Interpreter','latex')
 
 subplot(2,2,4);
@@ -193,7 +193,7 @@ hold on;
 plot(time,aft2(T0:T0+Tr),'r--');
 plot(time,aft3(T0:T0+Tr),'g-.');
 title('(d) Foreign asset over time');
-xlabel('Time');
+xlabel('Time t');
 legend('$\bar{a}=0.747$','$\bar{a}=0$','$\bar{a}=1.5$','Interpreter','latex')
 
 

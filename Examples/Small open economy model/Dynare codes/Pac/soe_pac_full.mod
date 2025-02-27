@@ -1,8 +1,6 @@
 /*
  * Small open-economy model: calibration for simulations with mexican data
  * Auxiliary model is PAC
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 */
 
 %Here c approximates (Ct/C0), where C0 is the DSS of Ct.

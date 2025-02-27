@@ -6,8 +6,6 @@ function y = calib_sss_bond2(x,model,params,M,eta,eps_ind,approx,b_target)
 % are data file 'model', vector of parameters 'params', matrices of moments
 % M, the 'eta' matrix, the index of epsilon in vector xt, the approximation
 % order, and the target for NFA.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %STEP 1: Given b_bar, recalculate the new DSS and implied auxiliary
 %parameter values, modifying other function inputs when necessary.

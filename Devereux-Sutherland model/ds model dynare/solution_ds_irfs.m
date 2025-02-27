@@ -1,9 +1,9 @@
 %--------------------------------------------------------------------------
 % Devereux-Sutherland (2011) model: Impulse responses.
 % Standard version with asset holdings
-% This script replicates Figure 3 in the paper.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script replicates Figure 3 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -13,7 +13,7 @@ disp('-----------------------------------------------');
 clear;
 
 %Add Dynare to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load Dynare's model data
 load('my_ds_model.mat');
 
@@ -36,7 +36,9 @@ my_color = 'b';
 %Perturbation solution
 %--------------------------------------------------------------------------
 %First, solve for the SSS
+tic
 a_sss = compute_sss_ds(M_,options_,oo_,eps_ind,0)
+toc
 
 % Recalculate DSS of auxiliary model
 ah1 = a_sss;
@@ -48,7 +50,9 @@ yss = [zh0;zh0;1;1;ah1;af1;0;0;0;0;0;0;1;1];
 oo_.steady_state = yss;
 
 %Compute derivatives of policy rules
+tic
 [mdr, ~, ~, ~] = resol(0, M_1, options_, oo_);
+toc
 
 %--------------------------------------------------------------------------
 % Simulation of the model of interest

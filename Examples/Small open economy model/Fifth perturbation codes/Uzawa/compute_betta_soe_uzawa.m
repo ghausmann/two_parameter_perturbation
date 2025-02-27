@@ -2,8 +2,6 @@ function y = compute_betta_soe_uzawa(P,b1,model,params,M,nxss0,nyss,eps_ind,appr
 %This function calibrates the value of pssi2 (and indirectly the discount
 %factor at the model of interest) consistent with a target SSS of bonds b_bar,
 %with Uzawa as the auxiliary model.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %Evaluate the matrix eta:
 ty = P(1);

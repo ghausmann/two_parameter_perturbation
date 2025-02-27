@@ -1,8 +1,6 @@
 %--------------------------------------------------------------------------
 % Small open economy: Comparative statics
 % Auxiliary model is Uzawa
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 clear
@@ -21,7 +19,8 @@ rho_z = 0; %auto-corr interest rate
 ty = 0.02; %conditional std. of income shocks
 tz = 0; %conditional std. of interest rate shocks
 
-rho_eps = 0.999999; %auto-corr epsilon (make it 1 after computing derivatives)
+rho_eps = 1;
+%rho_eps = 0.999999; %auto-corr epsilon (make it 1 after computing derivatives)
 psi1 = 0.00001; %auxiliary parameter (controls PAC)
 psi2 = -1.0000e-04; %controls discount factor of the model of interest 
 

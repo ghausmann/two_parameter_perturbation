@@ -1,4 +1,4 @@
-The current codes in this folder are:
+The 6 current codes in this folder are:
 
 prepare_model_growth.m: script, pre-processing of the growth model.
 
@@ -6,8 +6,8 @@ eval_sss_growth.m: evaluation function, implements the SSS algorithm.
 compute_sss_growth.m: function, approximates the SSS of capital using two-parameter perturbation.
 iter_sss_growth: function, approximates SSS of capital using standard perturbation.
 
-comp_statics_growth.m: script, performs comparative statics.
-simulation_growth.m: script, simulates the model.
+comp_statics_growth.m: script, performs comparative statics (Figure 2 in Appendix D.2).
+simulation_growth.m: script, simulates the model (Table 1 in Appendix D.2).
 
 And the current data files (from the global solution) are:
 my_comp_sss_global.mat

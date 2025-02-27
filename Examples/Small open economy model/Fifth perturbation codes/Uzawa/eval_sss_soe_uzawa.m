@@ -8,8 +8,6 @@ function y = eval_sss_soe_uzawa(b_bar,model,params,M,eta,nxss0,nyss,eps_ind,appr
 % matrices of moments M, the 'eta' matrix, the DSS of exogenous states
 % 'nxss0', the DSS of controls 'nyss', the index of epsilon in vector xt,
 % and the approximation order.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %STEP 1: Given b_bar, recalculate the new DSS and implied auxiliary
 %parameter values, modifying other function inputs when necessary.

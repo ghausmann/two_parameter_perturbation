@@ -1,9 +1,9 @@
 %--------------------------------------------------------------------------
 % Devereux-Sutherland (2011) model: Comparative statics
 % Standard version with asset holdings
-% This script replicates Figure 2 in the paper.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script replicates Figure 2 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -13,7 +13,7 @@ disp('-----------------------------------------------');
 clear;
 
 %Add Dynare to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load Dynare's model data
 load('my_ds_model.mat');
 

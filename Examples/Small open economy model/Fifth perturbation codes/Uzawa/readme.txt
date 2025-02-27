@@ -1,4 +1,4 @@
-The current codes in this folder are:
+The 8 current codes in this folder are:
 
 prepare_model_soe_uzawa.m: script, performs the pre-processing of the SOE model (auxiliary model is Uzawa).
 
@@ -10,8 +10,8 @@ compute_beta_soe_uzawa.m: function to calibrate pssi2_star consistent with a tar
 
 euler_errors_soe.m: function to compute Euler equation errors of the SOE.
 
-comp_statics_soe_uzawa.m: script to perform comparative statics.
-solution_soe_uzawa.m: script to compute Euler equation errors and kernel distributions.
+comp_statics_soe_uzawa.m: script to perform comparative statics (Figure 3 from Appendix D).
+solution_soe_uzawa.m: script to compute Euler equation errors and kernel distributions (Figure 4 and Table 3 from Appendix D).
 
 INSTRUCTIONS: 
 - Add the folders "Perturbation" (folders and subfolders) and "common functions" to the Matlab path.

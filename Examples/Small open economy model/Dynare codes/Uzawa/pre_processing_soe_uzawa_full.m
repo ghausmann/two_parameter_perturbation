@@ -7,7 +7,7 @@
 % Copyright (C) 2024 Guillermo Hausmann Guil
 
 clear;
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 dynare soe_uzawa_full.mod
 save('my_soe_uzawa_full.mat');
 

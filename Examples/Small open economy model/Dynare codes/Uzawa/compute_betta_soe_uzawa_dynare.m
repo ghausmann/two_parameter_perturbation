@@ -6,8 +6,6 @@ function y = compute_betta_soe_uzawa_dynare(b1,M_,options_,oo_,eps_ind,guess)
 % (M_, options_, and oo_), the index of the epsilon variable in the vector
 % yt of endogenous variables, and a initial guess.
 % Output is pssi2_star.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 options_.order=2; %Choose a second-order solution
 options_.k_order_solver=0;

@@ -7,8 +7,6 @@ function y = euler_errors_soe(P1,P2,nxss,nyss,derivs,x_1,epsi_nodes,weight_nodes
 %functions), x_1 (current states), epsi_nodes (nodes of monomials),
 %weight_nodes (probabilities of each node), and approx (order or
 %approximation).
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 msigmas = P1;
 

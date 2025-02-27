@@ -1,8 +1,6 @@
 /*
  * Small open-economy model: calibration for comparative statics
  * Auxiliary model is PAC
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 */
 
 %Here c approximates (Ct/C0), where C0 is the DSS of Ct.

@@ -1,9 +1,10 @@
 %--------------------------------------------------------------------------
 % Two-country Devereux-Sutherland (2011) model: stochastic simulation.
 % Standard version with asset holdings
-% This script computes Euler errors (up to fifth-order)
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script computes Euler errors (up to fifth-order),
+% replicating the results from Table 1 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -49,7 +50,7 @@ M.M2 = Sigma;
 eps_ind = 8; %index of epsilon in state vector
 %algo='gensylv';
 algo='vectorize';
-approx = 3;
+approx = 3; %order of approximation
 
 %--------------------------------------------------------------------------
 % Perturbation solution
@@ -72,9 +73,8 @@ nyss = [1;1;z0;z0;1;1]; %for controls
 mycheck=double(subs(f,[yp(:);y(:);xp(:);x(:);symparams(:)],[nyss(:);nyss(:);nxss(:);nxss(:);params(:)]))
 %Compute derivatives
 q2 = clock;
-derivs0=solve_dsge(model,params,M,eta,nxss,nyss,approx,algo);
+derivs1=solve_dsge(model,params,M,eta,nxss,nyss,approx,algo);
 my_time2 = etime(clock, q2)
-derivs1 = derivs0;
 
 %--------------------------------------------------------------------------
 % Simulation of the model of interest
@@ -86,9 +86,9 @@ derivs1.hx(eps_ind,eps_ind) = 1; % make sure epsilon is unit-root
 T0 = 1000;
 T = 10000;
 %draw pseudo-random innovations
-innovations = mvnrnd(zeros(n_e,1),Sigma,(T0 + (T-1)))'; % shocks from period 2 to T
+innovations = my_mvnrnd(zeros(n_e,1),Sigma,(T0 + (T-1)))'; % shocks from period 2 to T
 %use Levintal's function simul.m to simulate the economy:
-[yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs0,approx,0,model);
+[yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs1,approx,0,model);
 %[yt,xt]=simul_mod_pruning3(x0,innovations,nyss,nxss,eta,derivs1);
 
 

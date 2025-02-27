@@ -3,8 +3,6 @@
 % Auxiliary model is Uzawa
 % This script computes Euler equation errors and kernel distributions
 % It allows for a pruning scheme that treats perturbation objects as parameters
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 %---------------------------------------------------------------------------
 
 clear
@@ -24,7 +22,8 @@ ty = 0.02723*((1-rho_y^2)^0.5); %conditional std. of income shocks
 tz = 0.01958*((1-rho_z^2)^0.5); %conditional std. of interest rate shocks
 uy_ur_corr = -0.62; %conditional correlation between shocks
 
-rho_eps = 0.999999; %auto-corr epsilon (make it 1 after computing derivatives)
+rho_eps = 1;
+%rho_eps = 0.999999; %auto-corr epsilon (make it 1 after computing derivatives)
 psi1 = 0.00001; %auxiliary parameter (controls Uzawa elasticity)
 psi2 = 0; %controls discount factor of the model of interest (to be calibrated)
 
@@ -88,7 +87,7 @@ x0(eps_ind) = 1;
 T0 = 1000;
 T = 100000;
 %draw pseudo-random innovations
-innovations = mvnrnd([0 0],Sigma,(T0 + (T-1)))';
+innovations = my_mvnrnd([0 0],Sigma,(T0 + (T-1)))';
 
 %DEFAULT: Use Levintal's function simul.m to simulate the economy, without pruning:
 [yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs,approx1,0,model);

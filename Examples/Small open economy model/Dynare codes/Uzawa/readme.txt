@@ -1,4 +1,4 @@
-The current codes in this folder are:
+The 11 current codes in this folder are:
 
 soe_uzawa_basic.mod: mod file of the SOE (Uzawa as auxiliary model), with the calibration for comparative statics.
 soe_uzawa_full.mod: mod file of the SOE (Uzawa as auxiliary model), with the calibration using mexican data
@@ -14,8 +14,8 @@ pre_processing_soe_uzawa_full.m: script to do the pre-processing of the SOE mode
 
 euler_errors_soe_dynare.m: function to compute Euler equation errors of the SOE.
 
-comp_statics_soe_uzawa_dynare.m: script to perform comparative statics.
-solution_soe_uzawa_dynare.m: script to compute Euler equation errors and kernel distributions.
+comp_statics_soe_uzawa_dynare.m: script to perform comparative statics (Figure 3 from Appendix D).
+solution_soe_uzawa_dynare.m: script to compute Euler equation errors and kernel distributions (Figure 4 and Table 3 from Appendix D).
 
 
 INSTRUCTIONS: 

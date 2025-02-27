@@ -1,4 +1,4 @@
-The 11 current codes in this folder are:
+The 12 current codes in this folder are:
 
 prepare_model_ds.mod: Dynare MOD file
 pre_processing_ds.m: script, performs the pre-processing of the DS model.
@@ -13,9 +13,10 @@ solution_ds_sss.m: script, replicates Figure 1 in the paper.
 solution_ds_compstats.m: script, replicates Figure 2 in the paper.
 solution_ds_irfs.m: script, replicates Figure 3 in the paper.
 solution_ds_simul_distribution.m: script, replicates Figure 4 in the paper.
+solution_ds_simul_location.m: script, replicates Figure 5 in the paper.
 solution_ds_simul_errors.m: script, replicates Table 1 in the paper (up to third-order).
 
 
 INSTRUCTIONS: 
-- Add the folder "common functions" and Dynare's subfolder "matlab" (folder and subfolders) to the Matlab path.
+- Add the folder "common functions" and Dynare's (5x version) subfolder "matlab" (folder and subfolders) to the Matlab path.
 - Run the script pre_processing_ds.m once at the start of each Matlab session.

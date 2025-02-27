@@ -1,9 +1,9 @@
 %--------------------------------------------------------------------------
 % Devereux-Sutherland (2011) model: stochastic simulation.
 % Standard version with asset holdings
-% This script replicates figure 4 in the paper
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script replicates figure 4 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');
@@ -28,7 +28,9 @@ tk = 0.018; %std. capital income
 tl = 0.018; %std. labor income
 rho_eps = 1; % persistence of epsilon
 kappa = 0.007; %Uzawa parameter
-%kappa = 0;
+%------------------------------------------------------------------------
+%kappa = 0; %Uncomment this instead to make the discount factor exogenous
+%------------------------------------------------------------------------
 rho_y = 0.51; % persistence income
 rho_d = 0; % persistence capital share 
 uk_ul_corr = -0.5; %correlation between capital and labor income shocks 
@@ -86,7 +88,7 @@ derivs1.hx(eps_ind,eps_ind) = 1; % make sure epsilon is unit-root
 T0 = 1000;
 T = 1000000;
 %draw pseudo-random innovations
-innovations = mvnrnd(zeros(n_e,1),Sigma,(T0 + (T-1)))'; % shocks from period 2 to T
+innovations = my_mvnrnd(zeros(n_e,1),Sigma,(T0 + (T-1)))'; % shocks from period 2 to T
 %use Levintal's function simul.m to simulate the economy:
 [yt1,xt1]=simul(x0,innovations,nyss,nxss,eta,derivs0,approx,0,model);
 %use my modification to simulate with pruning

@@ -7,8 +7,7 @@ function y = eval2_sss_ds(a1,M_, options_, oo_,eps_ind)
 % The key input is a1 (SSS value of Home equity). 
 % Other inputs are Dynare's structs, and eps_ind (the
 % index of the epsilon variable)
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+
 
 %STEP 1: Given x, recalculate the new DSS and implied auxiliary parameter
 %values, modifying other function inputs when necessary.

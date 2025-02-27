@@ -1,9 +1,9 @@
 %--------------------------------------------------------------------------
 % Devereux-Sutherland (2011) model: Impulse responses.
 % Standard version with asset holdings
-% This script replicates Figure 3 in the paper.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script replicates Figure 3 in the paper:
+% "Solving DSGE models with incomplete markets by perturbation"
+% by Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 disp('-----------------------------------------------');

@@ -1,4 +1,4 @@
-The current codes in this folder are:
+The 8 current codes in this folder are:
 
 prepare_model_soe_pac.m: script, performs the pre-processing of the SOE model (auxiliary model is PAC).
 
@@ -10,8 +10,8 @@ compute_beta_soe_pac.m: function to calibrate pssi2_star consistent with a targe
 
 euler_errors_soe.m: function to compute Euler equation errors of the SOE.
 
-comp_statics_soe_pac.m: script to perform comparative statics.
-solution_soe_pac.m: script to compute Euler equation errors and kernel distributions.
+comp_statics_soe_pac.m: script to perform comparative statics (Figure 3 from Appendix D).
+solution_soe_pac.m: script to compute Euler equation errors and kernel distributions (Figure 4 and Table 3 from Appendix D).
 
 INSTRUCTIONS: 
 - Add the folders "Perturbation" (folders and subfolders) and "common functions" to the Matlab path.

@@ -4,15 +4,13 @@
 % This script performs a stochastic simulation of the model.
 % Compare the output with what you get using "solution_1p_soe.m" in the folder "one_param_soe". 
 % Remember to run first the script pre_processing_soe_pac_full.m
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 clear
 rng(0); %fix seed for full replication
 
 %Add Dynare's matlab folder to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load the pre-processing data
 load('my_soe_pac_full.mat');
 
@@ -48,7 +46,7 @@ T0 = 100;
 T = 1000;
 Sigma = M_.Sigma_e;
 %draw pseudo-random innovations
-innovations = mvnrnd([0 0],Sigma,(T0 + (T-1)))';
+innovations = my_mvnrnd([0 0],Sigma,(T0 + (T-1)))';
 
 %DEFAULT: use Dynare matlab function simult_.m to simulate the economy, without pruning:
 myt =simult_(M_,options_,x0,mdr,innovations',3);

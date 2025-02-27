@@ -1,8 +1,6 @@
 %---------------------------------------------------------------------------
 % One bond, two-country model: Comparative statics and simulation
-% This script replicates Figure 10 in Appendix D.4
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
+% This script replicates Figure 5 in Appendix D.4
 %---------------------------------------------------------------------------
 
 clear
@@ -137,15 +135,15 @@ T0 = 1000;
 T = 1000000;
 Te = 100000;
 %draw pseudo-random innovations
-innovations = mvnrnd([0 0],Sigma,(T0 + (T-1)))';
+innovations = my_mvnrnd([0 0],Sigma,(T0 + (T-1)))';
 
 %DEFAULT: Use Levintal's function simul.m to simulate the economy, without pruning:
-%[yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs,approx_d,0,model);
+[yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs,approx_d,0,model);
 %
 % ALTERNATIVE 1: same, but with pruning. You will get inaccurate results
 % because perturbation objects are treated as variables, so that the
 % first-order component of the auxiliary model is a near unit-root process.
-[yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs,approx_d,1,model);
+%[yt,xt]=simul(x0,innovations,nyss,nxss,eta,derivs,approx_d,1,model);
 %
 %ALTERNATIVE 2: Use my own function simul_mod_pruning3.m to simulate the
 %economy, a heavily modified version of simul.m that implements pruning by

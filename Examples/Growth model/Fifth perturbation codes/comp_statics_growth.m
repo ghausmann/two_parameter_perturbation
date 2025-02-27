@@ -1,5 +1,6 @@
 % -------------------------------------------------------------------------
 % Neoclassical growth model: Comparative statics
+% This script replicates the results in Figure 2 of Appendix D.2
 % -------------------------------------------------------------------------
 clear
 % Add folder 'files' to the search path:
@@ -14,7 +15,7 @@ alpa = 0.35;
 delta = 0.025;
 rho_z = 0.95;
 sz = 0.01; % just to provide a initial value
-rho_eps = 0.999999; % very close (or equal) to 1
+rho_eps = 1; % very close (or equal) to 1
 psi = 0; % just to provide a initial value
 
 % deterministic steady-state

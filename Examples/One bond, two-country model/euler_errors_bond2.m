@@ -6,8 +6,6 @@ function y = euler_errors_bond2(P,nxss,nyss,x_1,epsi_nodes,weight_nodes,derivs,e
 % of monomials), weight_nodes (probabilities of each node), derivs
 % (matrices of derivatives of the policy functions), the eta matrix, and
 % approx (order or approximation).
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 betta = P(1);
 gama = P(2);

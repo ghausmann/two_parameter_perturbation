@@ -1,5 +1,6 @@
 % -------------------------------------------------------------------------
 % Neoclassical growth model: Simulations
+% This script replicates the results in Table 1 of Appendix D.2
 % -------------------------------------------------------------------------
 
 clear
@@ -21,7 +22,7 @@ betta = 0.99;
 alpa = 0.35;
 delta = 0.025;
 rho_z = 0.95;
-rho_eps = 0.999999; % very close (or equal) to 1
+rho_eps = 1; 
 psi = 0; % just to provide a initial value
 
 if calibration==0

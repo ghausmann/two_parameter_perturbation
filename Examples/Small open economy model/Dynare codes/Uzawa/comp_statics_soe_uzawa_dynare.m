@@ -2,13 +2,11 @@
 % Small open economy: Comparative statics
 % Auxiliary model is Uzawa
 % Remember to run first the script pre_processing_soe_uzawa_basic.m
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 %--------------------------------------------------------------------------
 
 clear
 %Add Dynare's matlab folder to the search path
-addpath('C:\dynare\5.2\matlab');
+addpath('C:\dynare\5.5\matlab');
 %Load the pre-processing data
 load('my_soe_uzawa_basic.mat');
 

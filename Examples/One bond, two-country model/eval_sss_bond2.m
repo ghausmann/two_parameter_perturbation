@@ -6,8 +6,6 @@ function y = eval_sss_bond2(b_bar,model,params,M,eta,eps_ind,approx)
 % Other inputs are data file 'model', vector of parameters 'params',
 % matrices of moments M, the 'eta' matrix, the index of epsilon in vector
 % xt, and the approximation order.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %STEP 1: Given b_bar, recalculate the new DSS and implied auxiliary
 %parameter values, modifying other function inputs when necessary.

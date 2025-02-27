@@ -1,7 +1,5 @@
 function y = compute_sss_growth(sz,model,params,M,eps_ind,approx,guess)
 % This function approximates the SSS of capital k_bar in the neoclassical growth model.
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 %Evaluate the matrix eta:
 eta=[0;sz;0];

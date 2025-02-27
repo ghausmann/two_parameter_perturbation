@@ -6,8 +6,6 @@ function y = euler_errors_soe_dynare(P2,yss,mdr,yt,epsi_nodes,weight_nodes,appro
 % derivatives of the policy functions), yt (current variables), epsi_nodes
 % (nodes of monomials), weight_nodes (probabilities of each node), and
 % approx (order or approximation).
-%
-% Copyright (C) 2024 Guillermo Hausmann Guil
 
 betta = P2(1);
 gama = P2(2);
