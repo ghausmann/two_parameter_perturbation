@@ -19,7 +19,7 @@ euler_errors_soe_dynare.m: function to compute Euler equation errors of the SOE.
 
 comp_statics_soe_pac_dynare.m: script to perform comparative statics. (Figure 3 from Appendix D).
 solution_soe_pac_dynare.m: script to compute Euler equation errors and kernel distributions (Figure 4 and Table 3 from Appendix D).
-solution_soe_pac_dynare_testing.m: script to compare two-parameter perturbation with a single perturbation parameter approach.
+solution_soe_pac_compare.m: script to compare two-parameter perturbation with a single perturbation parameter approach.
 
 
 INSTRUCTIONS: 
