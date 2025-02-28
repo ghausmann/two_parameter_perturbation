@@ -1,3 +1,6 @@
+These codes replicate results from Appendix D.3 (SOE model) using Dynare.
+The auxiliary model uses PAC.
+
 The 12 current codes in this folder are:
 
 soe_pac_basic.mod: mod file of the SOE (PAC as auxiliary model), with the calibration for comparative statics.

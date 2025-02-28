@@ -1,3 +1,5 @@
+These codes replicate the results from Section 3 (Devereux and Sutherland model) using Dynare.
+
 The 12 current codes in this folder are:
 
 prepare_model_ds.mod: Dynare MOD file

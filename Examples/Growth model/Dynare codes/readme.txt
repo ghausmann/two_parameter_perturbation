@@ -1,3 +1,5 @@
+These codes replicate results from Appendix D.2 (Growth model) using Dynare.
+
 The 5 current codes in this folder are:
 
 prepare_model_growth.mod: mod file describing the model.

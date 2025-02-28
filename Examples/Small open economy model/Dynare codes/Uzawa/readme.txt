@@ -1,3 +1,6 @@
+These codes replicate results from Appendix D.3 (SOE model) using Dynare.
+The auxiliary model uses Uzawa preferences.
+
 The 11 current codes in this folder are:
 
 soe_uzawa_basic.mod: mod file of the SOE (Uzawa as auxiliary model), with the calibration for comparative statics.

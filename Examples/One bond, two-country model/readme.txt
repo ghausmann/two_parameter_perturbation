@@ -1,4 +1,5 @@
-Codes to solve the one-bond, two-country model of Appendix D.4, using Levintal's package.
+Codes to solve the one-bond, two-country model of Appendix D.4, using Levintal's toolkit.
+
 The 7 current codes in this folder are:
 
 prepare_mode_bond2.m: script, pre-processing of the model

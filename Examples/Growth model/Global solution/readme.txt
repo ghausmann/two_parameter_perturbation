@@ -1,3 +1,5 @@
+These codes replicate results from Appendix D.2 (Growth model) using a global solution method.
+
 The current codes in this folder are:
 
 c_poli_growth_fast.m: function, implements the endogenous grid method.

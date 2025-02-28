@@ -1,3 +1,5 @@
+These codes replicate the results from Appendix A (Devereux and Sutherland model) using Levintal's toolkit.
+
 The 5 current codes in this folder are:
 
 prepare_model_ds_wealth_5p.m: script, performs the pre-processing of the DS model, using the original notation by DS.

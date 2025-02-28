@@ -1,3 +1,6 @@
+These codes replicate results from Appendix D.3 (SOE model) using Levintal's toolkit.
+The auxiliary model uses Uzawa preferences.
+
 The 8 current codes in this folder are:
 
 prepare_model_soe_uzawa.m: script, performs the pre-processing of the SOE model (auxiliary model is Uzawa).

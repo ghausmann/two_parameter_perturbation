@@ -1,3 +1,5 @@
+These codes replicate results from Appendix D.3 (SOE model) using a global solution method.
+
 The 3 current codes in this folder are:
 
 b_poli_savings_update_soe.m: function to implement endogenous grid method.

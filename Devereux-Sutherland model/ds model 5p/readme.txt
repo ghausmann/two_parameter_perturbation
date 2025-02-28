@@ -1,3 +1,5 @@
+These codes replicate the results from Section 3 (Devereux and Sutherland model) using Levintal's toolkit.
+
 The 13 current codes in this folder are:
 
 prepare_model_ds_5p.m: script, performs the pre-processing of the DS model.

@@ -1,3 +1,6 @@
+These codes replicate results from Appendix D.3 (SOE model) using Levintal's toolkit.
+The auxiliary model uses PAC.
+
 The 8 current codes in this folder are:
 
 prepare_model_soe_pac.m: script, performs the pre-processing of the SOE model (auxiliary model is PAC).

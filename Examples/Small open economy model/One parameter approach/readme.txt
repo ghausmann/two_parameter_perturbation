@@ -1,3 +1,6 @@
+These codes implement a one-parameter approach to solve the SOE of Appendix D.3,
+just to show that it delivers identical results to those obtained with two-parameter perturbation.
+
 The 14 current codes in this folder are:
 
 derivatives_soe_o2_p1.m: script to compute up to second order derivatives for the full model

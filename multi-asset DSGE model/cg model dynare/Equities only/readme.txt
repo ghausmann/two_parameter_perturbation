@@ -1,3 +1,5 @@
+These codes replicate results from Appendix E (multi-asset DSGE model) using Dynare.
+
 The 5 current codes in this folder are:
 
 prepare_model_dsge2.mod: mod file of the two-country DSGE model with equities only.

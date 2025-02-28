@@ -1,3 +1,5 @@
+These codes replicate results from Appendix D.2 (Growth model) using Levintal's toolkit.
+
 The 6 current codes in this folder are:
 
 prepare_model_growth.m: script, pre-processing of the growth model.

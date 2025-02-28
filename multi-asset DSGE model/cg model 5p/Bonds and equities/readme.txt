@@ -1,3 +1,5 @@
+These codes replicate the results from Section 6 and Appendix E (multi-asset DSGE model) using Levintal's toolkit
+
 The 11 current codes in this folder are:
 
 prepare_model_dsge4_5p.m: script, performs the pre-processing of the two-country DSGE model with bonds and equities.
