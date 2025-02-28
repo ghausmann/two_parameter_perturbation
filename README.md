@@ -5,7 +5,7 @@ I solve most of the applications with both Dynare (5.x version) and the solution
 
 All the codes were tested with MATLAB R2021a and Dynare 5.5. The codes will not work with the latest Dynare 6.x version because the Dynare team changed the syntax of MATLAB functions.
  
-Each folder comes with a readme ".txt" file that lists the files and provides instructions.  
+Each folder comes with a readme ".txt" file that lists the files and provides instructions. See also "consolidated readme file.txt" for a folder-by-folder description and computing times.  
  
 The folder "Perturbation" consists of the solution package by Levintal (2017), which comes with its own license.
  
