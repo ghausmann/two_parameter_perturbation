@@ -1,5 +1,5 @@
 # two_parameter_perturbation
-In this repository you will find the replication files from the paper "Solving DSGE models with incomplete markets by perturbation", by Guillermo Hausmann-Guil.
+In this repository you will find the replication files from the paper "Solving DSGE models with incomplete markets by perturbation", by Guillermo Hausmann-Guil (Review of Economic Dynamics, 2025).
 
 I solve most of the applications with both Dynare (5.x version) and the solution package by Levintal (2017), so you can visualize codes in parallel and learn how to use one toolkit starting from the other. Note that there's always 100% agreement on the results between codes using either toolkit. 
 
